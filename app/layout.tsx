@@ -1,7 +1,8 @@
+import { AuthPopupProvider } from '@/app/context/AuthPopupContext';
+import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -24,7 +25,7 @@ export default function RootLayout({
 			<body className={`${poppins.variable} antialiased`}>
 				<Toaster />
 				{/* <LoaderWrapper>{children}</LoaderWrapper> */}
-				{children}
+				<AuthPopupProvider>{children}</AuthPopupProvider>
 			</body>
 		</html>
 	);

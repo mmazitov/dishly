@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuthPopup } from '@/app/context/AuthPopupContext';
 import { Button } from '@/components/ui/button';
 import {
 	Card,
@@ -22,6 +23,8 @@ interface Dish {
 }
 
 const DishDetails = ({ id, onBack }: DishDetailsProps) => {
+	const { openAuthPopup } = useAuthPopup();
+
 	const [dish, setDish] = useState<Dish | null>(null);
 	const API_KEY = process.env.NEXT_PUBLIC_DISH_API_KEY;
 
@@ -52,7 +55,7 @@ const DishDetails = ({ id, onBack }: DishDetailsProps) => {
 					<p dangerouslySetInnerHTML={{ __html: dish?.instructions }} />
 				</CardContent>
 				<CardFooter className="flex justify-end gap-x-5 pt-6">
-					<Button>add fav</Button>
+					<Button onClick={() => openAuthPopup(false)}>Add fav</Button>
 					<Button>remove fav</Button>
 					<Button>add to menu</Button>
 					<Button>remove from menu</Button>

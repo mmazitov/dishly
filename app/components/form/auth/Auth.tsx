@@ -14,7 +14,6 @@ import { Label } from '@/components/ui/label';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-// Интерфейс пропсов компонента Auth
 interface AuthProps {
 	isSignIn: boolean;
 	onClose: () => void;
@@ -27,7 +26,6 @@ const Auth: React.FC<AuthProps> = ({
 	const [isSignIn, setIsSignIn] = useState(initialSignInState);
 	const popupRef = useRef<HTMLDivElement>(null);
 
-	// Close popup when clicking outside or pressing Escape
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (

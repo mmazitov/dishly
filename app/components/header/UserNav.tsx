@@ -1,4 +1,5 @@
 'use client';
+import { useAuthPopup } from '@/app/context/AuthPopupContext';
 import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
@@ -8,24 +9,9 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MenuIcon } from 'lucide-react';
-import { useState } from 'react';
-import Auth from '../form/auth/Auth';
-
-// Интерфейс состояния окна авторизации
-interface AuthPopupState {
-	isOpen: boolean;
-	isSignIn: boolean;
-}
 
 const UserNav = () => {
-	const [authPopup, setAuthPopup] = useState<AuthPopupState>({
-		isOpen: false,
-		isSignIn: true,
-	});
-
-	const openAuthPopup = (isSignIn: boolean) => {
-		setAuthPopup({ isOpen: true, isSignIn });
-	};
+	const { openAuthPopup } = useAuthPopup();
 
 	return (
 		<div>
@@ -54,13 +40,6 @@ const UserNav = () => {
 					</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>
-
-			{authPopup.isOpen && (
-				<Auth
-					isSignIn={authPopup.isSignIn}
-					onClose={() => setAuthPopup({ ...authPopup, isOpen: false })}
-				/>
-			)}
 		</div>
 	);
 };
