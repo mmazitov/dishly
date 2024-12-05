@@ -7,12 +7,13 @@ interface SignInData {
 
 interface SignUpData extends SignInData {
 	name: string;
+	confirmPassword: string;
 }
 
 export const handleSignIn = async (data: SignInData) => {
 	try {
 		console.log('Submitting sign-in data:', data);
-		const response = await fetch('/api/auth/signin', {
+		const response = await fetch('/api/auth/signIn', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data),
@@ -45,7 +46,7 @@ export const handleSignUp = async (data: SignUpData) => {
 		console.log('Submitting sign-up data:', data);
 		const { confirmPassword, ...userData } = data;
 
-		const response = await fetch('/api/auth/signup', {
+		const response = await fetch('/api/auth/signUp', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(userData),

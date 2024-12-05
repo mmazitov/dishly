@@ -59,7 +59,7 @@ const Auth: React.FC<AuthProps> = ({
 	};
 
 	return (
-		<div className="top-0 left-0 z-50 fixed flex justify-center items-center bg-black/50 w-full h-full">
+		<div className="z-50 fixed inset-0 flex justify-center items-center bg-black/50 w-full h-full">
 			<motion.div
 				initial="initial"
 				animate="animate"

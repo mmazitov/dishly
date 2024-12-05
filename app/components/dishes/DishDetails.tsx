@@ -43,7 +43,7 @@ const DishDetails = ({ id, onBack }: DishDetailsProps) => {
 			<Button onClick={onBack} className="mb-4">
 				Back to List
 			</Button>
-			<Card>
+			<Card className="dish">
 				<CardHeader>
 					<h2 className="font-bold text-2xl">{dish?.title}</h2>
 				</CardHeader>

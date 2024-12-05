@@ -81,8 +81,8 @@ body {
 	margin-inline: auto;
 }
 
-ol li:before,
-ul li:before {
+.dish ol li:before,
+.dish ul li:before {
 	content: '-';
 	padding-right: 5px;
 }
