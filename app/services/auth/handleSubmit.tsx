@@ -31,11 +31,12 @@ export const handleSignIn = async (data: SignInData) => {
 			title: 'Login Successful',
 			description: 'You have successfully logged in.',
 		});
-	} catch (error: any) {
+	} catch (error: unknown) {
 		console.error('Sign-in error:', error);
 		toast({
 			title: 'Login Failed',
-			description: error.message,
+			description:
+				error instanceof Error ? error.message : 'An unknown error occurred',
 			variant: 'destructive',
 		});
 	}
@@ -64,11 +65,12 @@ export const handleSignUp = async (data: SignUpData) => {
 			title: 'Registration Successful',
 			description: 'You have successfully registered.',
 		});
-	} catch (error: any) {
+	} catch (error: unknown) {
 		console.error('Sign-up error:', error);
 		toast({
 			title: 'Registration Failed',
-			description: error.message,
+			description:
+				error instanceof Error ? error.message : 'An unknown error occurred',
 			variant: 'destructive',
 		});
 	}

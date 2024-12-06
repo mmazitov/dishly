@@ -23,9 +23,9 @@ const DishList = () => {
 	const { openAuthPopup } = useAuthPopup();
 	const [dishes, setDishes] = useState<Dish[]>([]);
 	const [selectedDishId, setSelectedDishId] = useState<number | null>(null);
-	const API_KEY = process.env.NEXT_PUBLIC_DISH_API_KEY;
 
 	useEffect(() => {
+		const API_KEY = process.env.NEXT_PUBLIC_DISH_API_KEY;
 		axios
 			.get(
 				`https://api.spoonacular.com/recipes/random?number=10&apiKey=${API_KEY}`,

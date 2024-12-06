@@ -9,6 +9,7 @@ import {
 	CardHeader,
 } from '@/components/ui/card';
 import axios from 'axios';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface DishDetailsProps {
@@ -51,8 +52,12 @@ const DishDetails = ({ id, onBack }: DishDetailsProps) => {
 					<h2 className="font-bold text-2xl">{dish?.title}</h2>
 				</CardHeader>
 				<CardContent className="flex flex-nowrap gap-x-5 border-primary py-2 pt-0 pb-6 border-b-2">
-					<img src={dish?.image} alt={dish?.title} className="w-full" />
-					<p dangerouslySetInnerHTML={{ __html: dish?.instructions }} />
+					<Image
+						src={dish?.image || 'https://placecats.com/millie_neo/300/200'}
+						alt={dish?.title || 'Dish image'}
+						className="w-full"
+					/>
+					<p dangerouslySetInnerHTML={{ __html: dish?.instructions || '' }} />
 				</CardContent>
 				<CardFooter className="flex justify-end gap-x-5 pt-6">
 					<Button onClick={() => openAuthPopup(false)}>Add fav</Button>

@@ -5,7 +5,6 @@ import { Label } from '@/components/ui/label';
 import { useFormContext } from 'react-hook-form';
 import FormError from './FormError';
 
-
 interface FormInputProps {
 	label: string;
 	id: string;
