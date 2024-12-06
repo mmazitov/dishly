@@ -3,7 +3,9 @@ import { PrismaClient } from '@prisma/client';
 let prisma: PrismaClient;
 
 declare global {
+	/* eslint-disable @typescript-eslint/no-var */
 	var prisma: PrismaClient | undefined;
+	/* eslint-enable @typescript-eslint/no-var */
 }
 
 if (process.env.NODE_ENV === 'production') {
