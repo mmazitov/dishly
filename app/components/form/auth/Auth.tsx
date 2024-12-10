@@ -86,7 +86,13 @@ const Auth: React.FC<AuthProps> = ({
 						)}
 					</CardHeader>
 
-					<CardContent>{isSignIn ? <SignIn /> : <SignUp />}</CardContent>
+					<CardContent>
+						{isSignIn ? (
+							<SignIn onSubmitSuccess={onClose} />
+						) : (
+							<SignUp onSubmitSuccess={onClose} />
+						)}
+					</CardContent>
 
 					<CardFooter className="pb-3">
 						{isSignIn ? (

@@ -2,22 +2,27 @@
 
 import { FormProvider, useForm } from 'react-hook-form';
 
+import FormButton from '@/app/components/form/formComponents/FormButton';
+import FormInput from '@/app/components/form/formComponents/FormInput';
 import { authSchema } from '@/app/lib/validateSchema';
 import { handleSignIn } from '@/app/services/auth/handleSubmit';
-import { handleValidationErrors } from '@/app/services/handleValidationErrors';
+import { handleValidationErrors } from '@/app/services/validation/handleValidationErrors';
 import { useToast } from '@/hooks/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { z } from 'zod';
-import FormInput from '@/app/components/form/formComponents/FormInput';
-import FormButton from '@/app/components/form/formComponents/FormButton';
 
 type AuthFormData = z.infer<typeof authSchema>;
-const SignIn = () => {
+
+const SignIn = ({ onSubmitSuccess }: { onSubmitSuccess: () => void }) => {
+	const router = useRouter();
 	const methods = useForm<AuthFormData>({ resolver: zodResolver(authSchema) });
 	const { toast } = useToast();
 
 	const onSubmit = async (data: AuthFormData) => {
 		await handleSignIn(data);
+		onSubmitSuccess();
+		router.push('/pages/profile');
 	};
 
 	const handleErrorToast = () => {

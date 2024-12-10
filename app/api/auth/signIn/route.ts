@@ -1,6 +1,7 @@
 import prisma from '@/app/lib/db';
 import bcrypt from 'bcrypt';
 import { NextResponse } from 'next/server';
+import { signIn, signOut } from 'next-auth/react';
 
 export async function POST(request: Request) {
 	try {

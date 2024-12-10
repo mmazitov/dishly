@@ -1,4 +1,5 @@
 import { toast } from '@/hooks/use-toast';
+import { signIn } from 'next-auth/react';
 
 interface SignInData {
 	email: string;
@@ -31,6 +32,7 @@ export const handleSignIn = async (data: SignInData) => {
 			title: 'Login Successful',
 			description: 'You have successfully logged in.',
 		});
+		await signIn('credentials', { redirect: false, ...data });
 	} catch (error: unknown) {
 		console.error('Sign-in error:', error);
 		toast({
@@ -60,10 +62,17 @@ export const handleSignUp = async (data: SignUpData) => {
 
 		const result = await response.json();
 		console.log('Sign-up successful:', result);
-
+		if (result.token) {
+			localStorage.setItem('token', result.token); // или cookies, если нужно
+		}
 		toast({
 			title: 'Registration Successful',
 			description: 'You have successfully registered.',
+		});
+		await signIn('credentials', {
+			redirect: false,
+			email: data.email,
+			password: data.password,
 		});
 	} catch (error: unknown) {
 		console.error('Sign-up error:', error);

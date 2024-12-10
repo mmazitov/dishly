@@ -7,18 +7,22 @@ import FormButton from '@/app/components/form/formComponents/FormButton';
 import FormInput from '@/app/components/form/formComponents/FormInput';
 import { signUpSchema } from '@/app/lib/validateSchema';
 import { handleSignUp } from '@/app/services/auth/handleSubmit';
-import { handleValidationErrors } from '@/app/services/handleValidationErrors';
+import { handleValidationErrors } from '@/app/services/validation/handleValidationErrors';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import z from 'zod';
 
 type SignUpFormData = z.infer<typeof signUpSchema>;
 
-const SignUp = () => {
+const SignUp = ({ onSubmitSuccess }: { onSubmitSuccess: () => void }) => {
+	const router = useRouter();
 	const methods = useForm<SignUpFormData>({
 		resolver: zodResolver(signUpSchema),
 	});
 	const onSubmit = async (data: SignUpFormData) => {
 		await handleSignUp(data);
+		onSubmitSuccess();
+		router.push('/pages/profile');
 	};
 
 	const handleErrorToast = () => {

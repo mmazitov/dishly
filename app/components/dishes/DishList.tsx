@@ -50,7 +50,7 @@ const DishList = () => {
 	};
 
 	return (
-		<div className="my-5 container">
+		<div>
 			{/* Если выбрано блюдо, отображаем компонент с деталями */}
 			{selectedDishId ? (
 				<DishDetails id={selectedDishId} onBack={handleBackToList} />

@@ -1,5 +1,5 @@
-import { AuthPopupProvider } from '@/app/context/AuthPopupContext';
-import { Toaster } from '@/components/ui/toaster';
+import Header from '@/app/components/header/Header';
+import { Provider } from '@/app/providers/Provider';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
@@ -23,9 +23,13 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${poppins.variable} antialiased`}>
-				<Toaster />
+				<Provider>
+					<Header />
+					<div className="my-5 container">{children}</div>
+				</Provider>
+				{/* <Toaster /> */}
 				{/* <LoaderWrapper>{children}</LoaderWrapper> */}
-				<AuthPopupProvider>{children}</AuthPopupProvider>
+				{/* <AuthPopupProvider>{children}</AuthPopupProvider> */}
 			</body>
 		</html>
 	);

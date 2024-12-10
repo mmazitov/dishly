@@ -6,9 +6,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import { AuthOptions } from 'next-auth';
 
 const authOptions: AuthOptions = {
-	session: {
-		strategy: 'jwt', // Убедитесь, что значение соответствует ожидаемому
-	},
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -44,6 +41,22 @@ const authOptions: AuthOptions = {
 			},
 		}),
 	],
+	secret: process.env.NEXTAUTH_SECRET,
+	session: {
+		strategy: 'jwt',
+	},
+	callbacks: {
+		async jwt({ user, token }) {
+			if (user) {
+				token.id = user.id;
+			}
+			return token;
+		},
+		async session({ session, token }) {
+			session.user.id = token.id;
+			return session;
+		},
+	},
 };
 
 export default authOptions;
