@@ -8,6 +8,7 @@ import { authSchema } from '@/app/lib/validateSchema';
 import { handleSignIn } from '@/app/services/auth/handleSubmit';
 import { handleValidationErrors } from '@/app/services/validation/handleValidationErrors';
 import { useToast } from '@/hooks/use-toast';
+import { Fieldset } from '@headlessui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
@@ -31,7 +32,7 @@ const SignIn = ({ onSubmitSuccess }: { onSubmitSuccess: () => void }) => {
 
 	return (
 		<FormProvider {...methods}>
-			<form
+			<Fieldset
 				className="gap-5 grid mt-3"
 				onSubmit={methods.handleSubmit(onSubmit, handleErrorToast)}
 			>
@@ -48,7 +49,7 @@ const SignIn = ({ onSubmitSuccess }: { onSubmitSuccess: () => void }) => {
 					errorMessage="Password required"
 				/>
 				<FormButton value="Sign in" />
-			</form>
+			</Fieldset>
 		</FormProvider>
 	);
 };

@@ -12,6 +12,8 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import { MdOutlineRestaurantMenu, MdOutlineStar } from 'react-icons/md';
+
 interface DishDetailsProps {
 	id: number;
 	onBack: () => void; // Функция для возврата к списку
@@ -51,19 +53,28 @@ const DishDetails = ({ id, onBack }: DishDetailsProps) => {
 				<CardHeader>
 					<h2 className="font-bold text-2xl">{dish?.title}</h2>
 				</CardHeader>
-				<CardContent className="flex flex-nowrap gap-x-5 border-primary py-2 pt-0 pb-6 border-b-2">
+				<CardContent className="flex flex-nowrap gap-x-5 border-primary py-2 pt-0 pb-6 border-b-2 text-[var(--card-text)]">
 					<Image
 						src={dish?.image || 'https://placecats.com/millie_neo/300/200'}
 						alt={dish?.title || 'Dish image'}
-						className="w-full"
+						width={300}
+						height={200}
 					/>
 					<p dangerouslySetInnerHTML={{ __html: dish?.instructions || '' }} />
 				</CardContent>
 				<CardFooter className="flex justify-end gap-x-5 pt-6">
-					<Button onClick={() => openAuthPopup(false)}>Add fav</Button>
-					<Button>remove fav</Button>
-					<Button>add to menu</Button>
-					<Button>remove from menu</Button>
+					<Button variant="outline" onClick={() => openAuthPopup(false)}>
+						<MdOutlineStar className="!w-[32px] !h-[32px]" />
+					</Button>
+					<Button variant="destructive">
+						<MdOutlineStar className="!w-[32px] !h-[32px]" />
+					</Button>
+					<Button variant="outline" onClick={() => openAuthPopup(false)}>
+						<MdOutlineRestaurantMenu className="!w-[32px] !h-[32px]" />
+					</Button>
+					<Button variant="destructive">
+						<MdOutlineRestaurantMenu className="!w-[32px] !h-[32px]" />
+					</Button>
 				</CardFooter>
 			</Card>
 		</div>

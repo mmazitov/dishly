@@ -1,13 +1,18 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-interface FormButtonProps {
+import {
+	Button,
+	buttonVariants,
+	type VariantProps,
+} from '@/components/ui/button';
+
+interface FormButtonProps extends VariantProps<typeof buttonVariants> {
 	value: string;
 }
 
-const FormButton: React.FC<FormButtonProps> = ({ value }) => {
+const FormButton: React.FC<FormButtonProps> = ({ value, variant }) => {
 	return (
-		<Button type="submit" className="w-full">
+		<Button type="submit" variant={variant} className="w-full">
 			{value}
 		</Button>
 	);
